@@ -13,6 +13,5 @@ Right button to move forward on current axis
 Left button to move backward on current axis
 
 ### Outputs:
-Switch to change between axes
-Right button to move forward on current axis
-Left button to move backward on current axis
+LEDs display current axis, where the player is on that axis, any obstacles and the goal
+The serial monitor shows your location on the map and where the goal is, but not any obstacles
