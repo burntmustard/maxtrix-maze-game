@@ -55,12 +55,16 @@ void update() {
     for (int t = 0; t < 9; t++) {
       if (map1[i][t] == 2) {
         Serial.print("[O]");
+      } else if ((map1[i][t] == 3)) {
+        Serial.print("[X]");
       } else {
         Serial.print("[ ]");
       }
     }
     if (map1[i][9] == 2) {
       Serial.println("[O]");
+    } else if ((map1[i][9] == 3)) {
+      Serial.println("[X]");
     } else {
       Serial.println("[ ]");
     }
@@ -92,8 +96,10 @@ void loop() {
   if (lf) {
     if (start == 1) { Start(); }
     map1[yl][xl] = 0;
-    if (dir == 0 && map1[yl][xl - 1] != 1 && xl > 1) { xl--; }
-    if (dir == 1 && map1[yl - 1][xl] != 1 && yl > 1) { yl--; }
+    if (dir == 0 && map1[yl][xl - 1] != 1 && xl > 0) { xl--; }
+    if (yl > 0) {
+      if (dir == 1 && map1[yl - 1][xl] != 1) { yl--; }
+    }
     update();
     delay(100);
     lf = 0;
@@ -124,7 +130,7 @@ void loop() {
       } else if (map1[yl][t] == 2) {
         CircuitPlayground.setPixelColor(t, 255, 255, 255);
       } else if (map1[yl][t] == 3) {
-        CircuitPlayground.setPixelColor(t, 200, 40, 0);
+        CircuitPlayground.setPixelColor(t, 0, 250, 0);
       }
     }
   }
@@ -137,7 +143,7 @@ void loop() {
       } else if (map1[t][xl] == 2) {
         CircuitPlayground.setPixelColor(t, 255, 255, 255);
       } else if (map1[t][xl] == 3) {
-        CircuitPlayground.setPixelColor(t, 200, 40, 0);
+        CircuitPlayground.setPixelColor(t, 0, 250, 0);
       }
     }
   }
