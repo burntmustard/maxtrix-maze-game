@@ -38,7 +38,7 @@ void sc() {
   sf = 1;
 }  //switch state
 
-void Start() {
+void Start() { //randomizes the obstacles on the map
   for (int t = 0; t < 14; t++) {
     map1[random(9)][random(9)] = 1;
   }
@@ -52,7 +52,7 @@ void update() {
   Serial.println();
   map1[yl][xl] = 2;
   for (int i = 0; i < 10; i++) {
-    for (int t = 0; t < 9; t++) {
+    for (int t = 0; t < 9; t++) {  //prints the first nine lines of array
       if (map1[i][t] == 2) {
         Serial.print("[O]");
       } else if ((map1[i][t] == 3)) {
@@ -61,7 +61,7 @@ void update() {
         Serial.print("[ ]");
       }
     }
-    if (map1[i][9] == 2) {
+    if (map1[i][9] == 2) {  //prints the last line of array & starts new line
       Serial.println("[O]");
     } else if ((map1[i][9] == 3)) {
       Serial.println("[X]");
@@ -93,18 +93,18 @@ void setup() {
 }
 
 void loop() {
-  if (lf) {
+  if (lf) {  //backwards movement on the board
     if (start == 1) { Start(); }
     map1[yl][xl] = 0;
     if (dir == 0 && map1[yl][xl - 1] != 1 && xl > 0) { xl--; }
     if (yl > 0) {
-      if (dir == 1 && map1[yl - 1][xl] != 1) { yl--; }
+      if (dir == 1 && map1[yl - 1][xl] != 1) { yl--; }  //not sure why, but I couldn't combine the ifs with an "&&"
     }
     update();
     delay(100);
     lf = 0;
   }
-  if (rf) {
+  if (rf) {  //forward movement on the board
     if (start == 1) { Start(); }
     map1[yl][xl] = 0;
     if (dir == 0 && map1[yl][xl + 1] != 1 && xl < 9) { xl++; }
@@ -113,7 +113,7 @@ void loop() {
     delay(100);
     rf = 0;
   }
-  if (sf) {
+  if (sf) {  //changes axis that the board displays
     if (start == 1) { Start(); }
     dir++;
     if (dir == 2) { dir = 0; }
@@ -122,7 +122,7 @@ void loop() {
     sf = 0;
   }
   if (dir == 0) {
-    for (int t = 0; t < 10; t++) {
+    for (int t = 0; t < 10; t++) {  //sets the lights on the board according to the matrix value
       if (map1[yl][t] == 0) {
         CircuitPlayground.setPixelColor(t, 0, 0, 0);
       } else if (map1[yl][t] == 1) {
@@ -135,7 +135,7 @@ void loop() {
     }
   }
   if (dir == 1) {
-    for (int t = 0; t < 10; t++) {
+    for (int t = 0; t < 10; t++) {  //sets the lights on the board according to the matrix value
       if (map1[t][xl] == 0) {
         CircuitPlayground.setPixelColor(t, 0, 0, 0);
       } else if (map1[t][xl] == 1) {
