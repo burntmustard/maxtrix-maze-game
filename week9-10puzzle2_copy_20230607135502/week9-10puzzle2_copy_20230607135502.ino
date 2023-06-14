@@ -45,6 +45,12 @@ void Start() { //randomizes the obstacles on the map
   gx = random(9);
   gy = random(9);
   map1[gy][gx] = 3;
+  CircuitPlayground.playTone(300, 50);
+  CircuitPlayground.playTone(350, 50);
+  CircuitPlayground.playTone(420, 50);
+  CircuitPlayground.playTone(330, 50);
+  CircuitPlayground.playTone(375, 50);
+  CircuitPlayground.playTone(460, 50);
   start = 0;
 }
 
@@ -96,7 +102,7 @@ void loop() {
   if (lf) {  //backwards movement on the board
     if (start == 1) { Start(); }
     map1[yl][xl] = 0;
-    if (dir == 0 && map1[yl][xl - 1] != 1 && xl > 0) { xl--; }
+    if (dir == 0 && (map1[yl][xl - 1] != 1) && (xl > 0)) { xl--; }
     if (yl > 0) {
       if (dir == 1 && map1[yl - 1][xl] != 1) { yl--; }  //not sure why, but I couldn't combine the ifs with an "&&"
     }
